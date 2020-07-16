@@ -1,0 +1,22 @@
+{
+  "name": "cdk-practice",
+  "version": "1.0.0",
+  "description": "AWS CDK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/checche/cdk-practice.git"
+  },
+  "author": "checche",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/checche/cdk-practice/issues"
+  },
+  "homepage": "https://github.com/checche/cdk-practice#readme",
+  "dependencies": {
+    "aws-cdk": "^1.51.0"
+  }
+}
