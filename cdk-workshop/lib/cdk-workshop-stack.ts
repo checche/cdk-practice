@@ -6,12 +6,14 @@ export class CdkWorkshopStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    // defines an lambda resource
     const hello = new lambda.Function(this, "HelloHandler", {
       runtime: lambda.Runtime.NODEJS_10_X,
       code: lambda.Code.fromAsset("lambda"), // path to lamda directory, relative to where you execute cdk from
       handler: "hello.handler", // the name of the handler function
     });
 
+    // defines an API Gateway REST API resource backed by our "hello" function.
     new apigw.LambdaRestApi(this, "Endpoint", {
       handler: hello,
     });
