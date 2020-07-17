@@ -17,6 +17,26 @@ test("DynamoDB Table Created", () => {
   expectCDK(stack).to(haveResource("AWS::DynamoDB::Table"));
 });
 
+test("DynamoDB Table Created With Encryption", () => {
+  const stack = new cdk.Stack();
+
+  new HitCounter(stack, "MyTestConstruct", {
+    downstream: new lambda.Function(stack, "TestFunction", {
+      runtime: lambda.Runtime.NODEJS_10_X,
+      handler: "lambda.handler",
+      code: lambda.Code.inline("test"),
+    }),
+  });
+
+  expectCDK(stack).to(
+    haveResource("AWS::DynamoDB::Table", {
+      SSESpecification: {
+        SSEEnabled: true,
+      },
+    })
+  );
+});
+
 test("Lambda Has Environment Variables", () => {
   const stack = new cdk.Stack();
 
